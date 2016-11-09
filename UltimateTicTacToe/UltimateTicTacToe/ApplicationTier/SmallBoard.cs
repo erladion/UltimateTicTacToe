@@ -44,10 +44,10 @@ namespace UltimateTicTacToe.ApplicationTier
         }
         
         public Mark getMark(Point pt)
-        {
+        {            
             try
             {
-                if (pt.X <= boardSize - 1 && pt.Y <= boardSize - 1)
+                if (validPoint(pt))
                 {
                     return board[(int)pt.X, (int)pt.Y];
                 }
@@ -66,9 +66,15 @@ namespace UltimateTicTacToe.ApplicationTier
         {
             try
             {
-                if (pt.X <= boardSize - 1 && pt.Y <= boardSize - 1)
+                if (validPoint(pt))
                 {
-                    board[(int)pt.X, (int)pt.Y] = mark;
+                    if(validPlacement(pt, mark)) { 
+                        board[(int)pt.X, (int)pt.Y] = mark;
+                    }
+                    else
+                    {
+                        // Need exception here
+                    }
                 }
                 else
                 {
@@ -80,6 +86,32 @@ namespace UltimateTicTacToe.ApplicationTier
 
             }
         }
+
+        private bool validPoint(Point pt)
+        {
+            return (pt.X <= boardSize - 1 && pt.Y <= boardSize - 1) ? true : false;
+        }        
+
+        private bool validPlacement(Point pt, Mark mark)
+        {
+            try
+            {
+                if (validPoint(pt))
+                {
+                    return (board[(int)pt.X, (int)pt.Y] == Mark.Empty) ? true : false;                    
+                }
+                else
+                {
+                    // This should be a new exception and not just Exception
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+        }
+
         public Mark[,] Board
         {
             get

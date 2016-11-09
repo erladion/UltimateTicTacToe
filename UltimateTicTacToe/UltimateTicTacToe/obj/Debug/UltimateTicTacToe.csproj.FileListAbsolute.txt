@@ -12,3 +12,4 @@
 \\obelix.helix.ida.liu.se\users-1\johja118\Documents\Visual Studio 2015\Projects\UltimateTicTacToe\UltimateTicTacToe\obj\Debug\UltimateTicTacToe.csproj.GenerateResource.Cache
 \\obelix.helix.ida.liu.se\users-1\johja118\Documents\Visual Studio 2015\Projects\UltimateTicTacToe\UltimateTicTacToe\obj\Debug\UltimateTicTacToe.exe
 \\obelix.helix.ida.liu.se\users-1\johja118\Documents\Visual Studio 2015\Projects\UltimateTicTacToe\UltimateTicTacToe\obj\Debug\UltimateTicTacToe.pdb
+D:\Development\GitHub\UltimateTicTacToe\UltimateTicTacToe\UltimateTicTacToe\bin\Debug\UltimateTicTacToe.exe.config
