@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace UltimateTicTacToe
 {
@@ -23,7 +24,22 @@ namespace UltimateTicTacToe
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            /*
+            *https://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.findname.aspx
+            *http://stackoverflow.com/questions/223952/create-an-instance-of-a-class-from-a-string
+            *http://stackoverflow.com/questions/23060609/access-objects-in-usercontrol-from-mainwindow-in-wpf
+            */
+
+            /*Object obj = Grid11.FindName("Grid11Rect11");
+            System.Windows.Shapes.Rectangle r = (Rectangle)obj;
+            */
+
+            /*
+            Grid g = (Grid)MainGrid.FindName("Grid11");
+            Rectangle r = (Rectangle)g.FindName("Grid" + x.ToString() + y.ToString() + "Rect" + x.ToString() + y.ToString());
+            r.Fill = new SolidColorBrush(Colors.Black);
+            */
         }
     }
 }
