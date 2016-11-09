@@ -69,6 +69,14 @@ namespace UltimateTicTacToe.ApplicationTier
             }
         }
 
+        public Point ActiveBoard
+        {
+            get
+            {
+                return activeBoard;
+            }
+        }
+
         public void updateMark()
         {
             if(activeMark == Mark.Circle)
