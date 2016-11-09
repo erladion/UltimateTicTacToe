@@ -14,7 +14,7 @@ namespace UltimateTicTacToe.ApplicationTier
         Circle
     };
 
-    class SmallBoard
+    class SmallBoard : SmallBoardInterface
     {
         private int boardSize = 3;
         private Mark[,] board;
@@ -39,7 +39,7 @@ namespace UltimateTicTacToe.ApplicationTier
             }
             else
             {
-                throw new BoardSizeException("Board size is not valid, should be 2D-array with size 3");                
+                throw new BoardSizeException("Board size is not valid, should be 2D-array with size 3");                           
             }
         }
         

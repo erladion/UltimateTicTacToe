@@ -23,6 +23,7 @@ namespace UltimateTicTacToe
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }
