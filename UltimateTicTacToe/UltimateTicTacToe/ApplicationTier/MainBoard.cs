@@ -12,7 +12,7 @@ namespace UltimateTicTacToe.ApplicationTier
         private const int boardSize = 3;
         private SmallBoard[,] boards = null;
         private Point activeBoard;
-        private Mark activeMark;
+        private Mark activeMark = Mark.Cross;
 
         public MainBoard(SmallBoard[,] boards, Point activeBoard)
         {
@@ -26,6 +26,19 @@ namespace UltimateTicTacToe.ApplicationTier
                 throw new BoardSizeException();
             }            
             this.activeBoard = activeBoard;
+        }
+
+        public MainBoard(SmallBoard[,] boards)
+        {
+            try
+            {
+                validateBoard(boards);
+                validateActiveBoard(activeBoard);
+            }
+            catch (BoardSizeException)
+            {
+                throw new BoardSizeException();
+            }            
         }
 
         private void validateBoard(SmallBoard[,] boards)
@@ -42,7 +55,7 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private void validateActiveBoard(Point pt)
         {
-            if (pt.X <= boardSize - 1 && pt.Y <= boardSize - 1)
+            if (pt.X <= boardSize && pt.Y <= boardSize)
             {
                 this.activeBoard = pt;
             }
@@ -59,9 +72,9 @@ namespace UltimateTicTacToe.ApplicationTier
 
         public void placeMark(Point pt)
         {
-            if(pt.X <= boardSize-1 && pt.Y <= boardSize - 1)
+            if(pt.X <= boardSize && pt.Y <= boardSize)
             {
-                boards[(int)activeBoard.X, (int)activeBoard.Y].setMark(pt, activeMark); 
+                boards[(int)activeBoard.X-1, (int)activeBoard.Y-1].setMark(pt, activeMark); 
             }
             else
             {
@@ -86,6 +99,14 @@ namespace UltimateTicTacToe.ApplicationTier
             else
             {
                 activeMark = Mark.Circle;
+            }
+        }
+
+        public Mark ActiveMark
+        {
+            get
+            {
+                return this.activeMark;
             }
         }
     }
