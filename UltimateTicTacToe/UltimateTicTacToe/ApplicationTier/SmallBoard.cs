@@ -49,7 +49,7 @@ namespace UltimateTicTacToe.ApplicationTier
             {
                 if (validPoint(pt))
                 {
-                    return board[(int)pt.X, (int)pt.Y];
+                    return board[(int)pt.X-1, (int)pt.Y-1];
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace UltimateTicTacToe.ApplicationTier
                 if (validPoint(pt))
                 {
                     if(validPlacement(pt, mark)) { 
-                        board[(int)pt.X, (int)pt.Y] = mark;
+                        board[(int)pt.X-1, (int)pt.Y-1] = mark;
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private bool validPoint(Point pt)
         {
-            return (pt.X <= boardSize - 1 && pt.Y <= boardSize - 1) ? true : false;
+            return (pt.X <= boardSize && pt.Y <= boardSize) ? true : false;
         }        
 
         private bool validPlacement(Point pt, Mark mark)
@@ -98,7 +98,7 @@ namespace UltimateTicTacToe.ApplicationTier
             {
                 if (validPoint(pt))
                 {
-                    return (board[(int)pt.X, (int)pt.Y] == Mark.Empty) ? true : false;                    
+                    return (board[(int)pt.X-1, (int)pt.Y-1] == Mark.Empty) ? true : false;                    
                 }
                 else
                 {

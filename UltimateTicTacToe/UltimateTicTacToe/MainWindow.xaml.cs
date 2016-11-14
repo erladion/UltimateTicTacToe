@@ -29,9 +29,15 @@ namespace UltimateTicTacToe
             this.g = new ApplicationTier.Game();
             this.g.initGame();
 
-            this.g.MB.setActiveBoard(new Point(1, 1));
+            this.g.Board.setActiveBoard(new Point(1, 1));
 
+            drawBoard();       
             
+            /*
+            Border b = (Border)Grid11.FindName("Grid11Border");
+            b.BorderBrush = new SolidColorBrush(Colors.Red);
+            */  
+                      
             /*
             *https://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.findname.aspx
             *http://stackoverflow.com/questions/223952/create-an-instance-of-a-class-from-a-string
@@ -53,18 +59,17 @@ namespace UltimateTicTacToe
         {
             Rectangle r = (Rectangle)sender;
             Point clickedGrid = parseGrid(r);
-            if (clickedGrid == g.MB.ActiveBoard)
+            if (clickedGrid == g.Board.ActiveBoard)
             {
-                Point p = parseRect(r);
-                g.MB.setActiveBoard(p);
-
-                g.MB.placeMark(p);
-                colorRect(r);
-                g.MB.updateMark();
+                Point p = parseRect(r);                
+                if (g.Board.clickHandle(p))
+                {
+                    updateActiveBorder(p, clickedGrid);
+                    drawBoard();
+                    g.Board.checkIfWin(p);
+                }                            
             }            
         }
-
-
 
         private Point parseRect(Rectangle r)
         {            
@@ -85,7 +90,7 @@ namespace UltimateTicTacToe
         private void colorRect(Rectangle r)
         {
             Color c = new Color();
-            if(g.MB.ActiveMark == ApplicationTier.Mark.Cross)
+            if(g.Board.isTurnCross())
             {
                 c = Colors.Black;
             }
@@ -96,6 +101,37 @@ namespace UltimateTicTacToe
             r.Fill = new SolidColorBrush(c);
         }
 
+        private void drawBoard()
+        {
+            for (int mbX = 1; mbX <= g.Board.BoardSize; mbX++)
+            {
+                for (int mbY = 1; mbY <= g.Board.BoardSize; mbY++)
+                {
+                    for (int sbX = 1; sbX <= g.Board.BoardSize; sbX++)
+                    {
+                        for (int sbY = 1; sbY <= g.Board.BoardSize; sbY++)
+                        {
+                            Rectangle r = (Rectangle)MainGrid.FindName("Grid" + mbX + mbY + "Rect" + sbX + sbY);
+                            Color c = Colors.LightGray;
+                            if(g.Board.isCircle(new Point(sbX, sbY), new Point(mbX, mbY))){
+                                c = Colors.Red;
+                            }
+                            else if(g.Board.isCross(new Point(sbX, sbY), new Point(mbX, mbY))){
+                                c = Colors.Black;
+                            }
+                            r.Fill = new SolidColorBrush(c);
+                        }
+                    }
+                }
+            }
+        }
 
+        private void updateActiveBorder(Point newAB, Point oldAB)
+        {            
+            Border oldBorder = (Border)MainGrid.FindName("Grid" + oldAB.X + oldAB.Y + "Border");
+            Border newBorder = (Border)MainGrid.FindName("Grid" + newAB.X + newAB.Y + "Border");                     
+            oldBorder.Opacity = 0;
+            newBorder.Opacity = 100;
+        }
     }
 }

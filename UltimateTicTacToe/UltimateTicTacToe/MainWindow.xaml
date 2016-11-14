@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:UltimateTicTacToe"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="900">
-    <Grid>
-        <Grid x:Name="Grid11" HorizontalAlignment="Left" Height="260" Margin="30,30,0,0" VerticalAlignment="Top" Width="260">
+    <Grid x:Name="MainGrid" HorizontalAlignment="Right" Width="892">        
+        <Grid x:Name="Grid11" HorizontalAlignment="Left" Height="260" Margin="30,30,0,0" VerticalAlignment="Top" Width="260">            
+            <Border x:Name="Grid11Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid11Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid11Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid11Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -19,6 +20,7 @@
             <Rectangle x:Name="Grid11Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid21" HorizontalAlignment="Left" Height="260" Margin="295,30,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid21Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid21Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid21Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid21Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -30,6 +32,7 @@
             <Rectangle x:Name="Grid21Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid31" HorizontalAlignment="Left" Height="260" Margin="560,30,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid31Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid31Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid31Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid31Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -41,6 +44,7 @@
             <Rectangle x:Name="Grid31Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid12" HorizontalAlignment="Left" Height="260" Margin="30,295,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid12Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid12Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid12Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid12Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -52,6 +56,7 @@
             <Rectangle x:Name="Grid12Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid22" HorizontalAlignment="Left" Height="260" Margin="295,295,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid22Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid22Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid22Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid22Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -63,6 +68,7 @@
             <Rectangle x:Name="Grid22Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid32" HorizontalAlignment="Left" Height="260" Margin="560,295,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid32Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid32Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid32Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid32Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -74,6 +80,7 @@
             <Rectangle x:Name="Grid32Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid13" HorizontalAlignment="Left" Height="260" Margin="30,560,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid13Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid13Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid13Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid13Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -85,6 +92,7 @@
             <Rectangle x:Name="Grid13Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid23" HorizontalAlignment="Left" Height="260" Margin="295,560,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid23Border" BorderBrush="#FF179AC8" BorderThickness="5" Opacity="0" />
             <Rectangle x:Name="Grid23Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid23Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid23Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
@@ -96,6 +104,7 @@
             <Rectangle x:Name="Grid23Rect33" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,172.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
         </Grid>
         <Grid x:Name="Grid33" HorizontalAlignment="Left" Height="260" Margin="560,560,0,0" VerticalAlignment="Top" Width="260">
+            <Border x:Name="Grid33Border" BorderBrush="#FF179AC8" BorderThickness="2" Opacity="0" />
             <Rectangle x:Name="Grid33Rect11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="2.5,2.5,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid33Rect21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="87.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
             <Rectangle x:Name="Grid33Rect31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="85" Margin="172.5,2,0,0" Stroke="Black" VerticalAlignment="Top" Width="85" MouseDown="click"/>
