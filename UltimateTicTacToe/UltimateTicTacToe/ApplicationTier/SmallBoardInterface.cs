@@ -10,6 +10,6 @@ namespace UltimateTicTacToe.ApplicationTier
     interface SmallBoardInterface
     {
         Mark getMark(Point pt);
-        void setMark(Point pt, Mark mark);
+        void setMark(Point pt, Mark mark);        
     }
 }

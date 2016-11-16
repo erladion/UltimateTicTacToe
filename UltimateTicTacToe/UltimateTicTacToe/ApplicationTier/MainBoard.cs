@@ -14,6 +14,10 @@ namespace UltimateTicTacToe.ApplicationTier
         private Point activeBoard;
         private Mark activeMark = Mark.Cross;
 
+        /*
+        * Make the constructor take an EMainBoard as parameter instead of SmallBoard
+        *
+        */
         public MainBoard(SmallBoard[,] boards, Point activeBoard)
         {
             try
@@ -76,11 +80,11 @@ namespace UltimateTicTacToe.ApplicationTier
             {
                 return false;
             }
-        }
+        }        
 
         public bool checkIfWin(Point pt)
         {
-            SmallBoard b = boards[(int)pt.X, (int)pt.Y];            
+            SmallBoard b = boards[(int)pt.X-1, (int)pt.Y-1];            
             List<List<Mark>> allCombinations = generateLists(b);
 
             //List<Mark> winList = new List<Mark>();
@@ -97,7 +101,7 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private List<Mark> test(List<Mark> t)
         {
-            if (t[0] == t[1] && t[0] == t[2])
+            if (t[0] == t[1] && t[0] == t[2] && t[0] != Mark.Empty)
             {
                 return t;
             }
@@ -109,15 +113,17 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private List<List<Mark>> generateLists(SmallBoard board)
         {
-            List<List<Mark>> ret = new List<List<Mark>>();
-            ret[0] = new List<Mark>(){board.getMark(new Point(1, 1)), board.getMark(new Point(1, 2)), board.getMark(new Point(1,3))};
-            ret[1] = new List<Mark>() { board.getMark(new Point(1, 1)), board.getMark(new Point(2, 1)), board.getMark(new Point(3, 1)) };
-            ret[2] = new List<Mark>() { board.getMark(new Point(1, 1)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 3)) };
-            ret[3] = new List<Mark>() { board.getMark(new Point(1, 2)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 2)) };
-            ret[4] = new List<Mark>() { board.getMark(new Point(1, 3)), board.getMark(new Point(2, 3)), board.getMark(new Point(3, 3)) };
-            ret[5] = new List<Mark>() { board.getMark(new Point(2, 1)), board.getMark(new Point(2, 2)), board.getMark(new Point(2, 3)) };
-            ret[6] = new List<Mark>() { board.getMark(new Point(3, 1)), board.getMark(new Point(3, 2)), board.getMark(new Point(3, 3)) };
-            ret[7] = new List<Mark>() { board.getMark(new Point(1, 3)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 1)) };
+            List<List<Mark>> ret = new List<List<Mark>>()
+            {
+                new List<Mark>(){board.getMark(new Point(1, 1)), board.getMark(new Point(1, 2)), board.getMark(new Point(1,3))},
+                new List<Mark>() { board.getMark(new Point(1, 1)), board.getMark(new Point(2, 1)), board.getMark(new Point(3, 1))},
+                new List<Mark>() { board.getMark(new Point(1, 1)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 3)) },
+                new List<Mark>() { board.getMark(new Point(1, 2)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 2)) },
+                new List<Mark>() { board.getMark(new Point(1, 3)), board.getMark(new Point(2, 3)), board.getMark(new Point(3, 3)) },
+                new List<Mark>() { board.getMark(new Point(2, 1)), board.getMark(new Point(2, 2)), board.getMark(new Point(2, 3)) },
+                new List<Mark>() { board.getMark(new Point(3, 1)), board.getMark(new Point(3, 2)), board.getMark(new Point(3, 3)) },
+                new List<Mark>() { board.getMark(new Point(1, 3)), board.getMark(new Point(2, 2)), board.getMark(new Point(3, 1)) }
+            };           
             return ret;
         }
 
@@ -146,7 +152,7 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private bool validPosition(Point pt, Point board)
         {
-            MessageBox.Show("Point 1: " + pt.X.ToString() + "," + pt.Y.ToString() + "Point 2: " + board.X.ToString() + "," + board.Y.ToString() + "? " + (boards[(int)board.X - 1, (int)board.Y - 1].getMark(pt)).ToString());
+            //MessageBox.Show("Point 1: " + pt.X.ToString() + "," + pt.Y.ToString() + "Point 2: " + board.X.ToString() + "," + board.Y.ToString() + "? " + (boards[(int)board.X - 1, (int)board.Y - 1].getMark(pt)).ToString());
             return (Mark.Empty == boards[(int)board.X - 1, (int)board.Y - 1].getMark(pt));
         }
 

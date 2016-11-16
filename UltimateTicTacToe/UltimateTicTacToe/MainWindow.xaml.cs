@@ -28,16 +28,16 @@ namespace UltimateTicTacToe
 
             this.g = new ApplicationTier.Game();
             this.g.initGame();
-
             this.g.Board.setActiveBoard(new Point(1, 1));
 
-            drawBoard();       
-            
+            drawBoard();
+
+            #region 
             /*
             Border b = (Border)Grid11.FindName("Grid11Border");
             b.BorderBrush = new SolidColorBrush(Colors.Red);
-            */  
-                      
+            */
+
             /*
             *https://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.findname.aspx
             *http://stackoverflow.com/questions/223952/create-an-instance-of-a-class-from-a-string
@@ -53,6 +53,8 @@ namespace UltimateTicTacToe
             Rectangle r = (Rectangle)g.FindName("Grid" + x.ToString() + y.ToString() + "Rect" + x.ToString() + y.ToString());
             r.Fill = new SolidColorBrush(Colors.Black);
             */
+            #endregion
+
         }   
         
         private void click(object sender, MouseButtonEventArgs e)
@@ -66,7 +68,7 @@ namespace UltimateTicTacToe
                 {
                     updateActiveBorder(p, clickedGrid);
                     drawBoard();
-                    g.Board.checkIfWin(p);
+                    g.Board.checkIfWin(clickedGrid);
                 }                            
             }            
         }

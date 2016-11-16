@@ -45,7 +45,7 @@ namespace UltimateTicTacToe.ApplicationTier
             }
         }
 
-        public Mark[,] createEmptyBoard()
+        private Mark[,] createEmptyBoard()
         {
             Mark[,] m = new Mark[3, 3];
             for (int x = 0; x < 3; x++)
