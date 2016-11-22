@@ -89,16 +89,17 @@ namespace UltimateTicTacToe.ApplicationTier
 
         private bool validPoint(Point pt)
         {
-            return (pt.X <= boardSize && pt.Y <= boardSize) ? true : false;
+            return (pt.X <= boardSize && pt.Y <= boardSize);
         }        
 
         private bool validPlacement(Point pt, Mark mark)
         {
+
             try
             {
                 if (validPoint(pt))
                 {
-                    return (board[(int)pt.X-1, (int)pt.Y-1] == Mark.Empty) ? true : false;                    
+                    return (board[(int)pt.X-1, (int)pt.Y-1] == Mark.Empty);                    
                 }
                 else
                 {

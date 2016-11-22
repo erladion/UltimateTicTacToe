@@ -9,10 +9,10 @@ namespace UltimateTicTacToe.ApplicationTier
 {
     class Game
     {
-        private MainBoard board = null;
+        private BoardLogic board = null;
         public Game()
         {
-
+            initGame();
         }
 
         public void initGame()
@@ -25,7 +25,18 @@ namespace UltimateTicTacToe.ApplicationTier
                     sba[x, y] = new SmallBoard(createEmptyBoard());                    
                 }
             }
-            this.board = new MainBoard(sba);
+            Entity.EMainBoard board = new Entity.EMainBoard(sba, new Point(1,1), Mark.Cross);
+            this.board = new BoardLogic(board);
+        }
+
+        public bool clickHandle(Point pt, Point clickedBoard)
+        {
+            return board.clickHandle(pt,clickedBoard);
+        }
+
+        public bool checkIfWin(Point pt)
+        {
+            return board.checkIfWin(pt);
         }
 
         public void saveGame()
@@ -37,8 +48,13 @@ namespace UltimateTicTacToe.ApplicationTier
         {
 
         }
-        
-        public MainBoard Board{
+
+        public void newGame()
+        {
+            board.resetBoard();
+        }
+
+        public BoardLogic Board{
             get
             {
                 return this.board;
@@ -56,6 +72,23 @@ namespace UltimateTicTacToe.ApplicationTier
                 }
             }
             return m;
+        }
+
+        public string getShape(Point pt, Point board)
+        {
+            if (this.board.isCross(pt, board))
+            {
+                return "cross";
+
+            }
+            else if(this.board.isCircle(pt, board))
+            {
+                return "circle";
+            }
+            else
+            {
+                return "empty";
+            }
         }
     }
 }
