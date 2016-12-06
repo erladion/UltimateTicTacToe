@@ -26,53 +26,16 @@ namespace UltimateTicTacToe
         {
             InitializeComponent();
 
-            this.g = new ApplicationTier.Game();
-            this.g.initGame();
-            this.g.Board.setActiveBoard(new Point(1, 1));
+            this.g = new ApplicationTier.Game();            
 
             drawBoard();
+        }        
 
-            #region 
-            /*
-            Border b = (Border)Grid11.FindName("Grid11Border");
-            b.BorderBrush = new SolidColorBrush(Colors.Red);
-            */
-
-            /*
-            *https://msdn.microsoft.com/en-us/library/system.windows.frameworkelement.findname.aspx
-            *http://stackoverflow.com/questions/223952/create-an-instance-of-a-class-from-a-string
-            *http://stackoverflow.com/questions/23060609/access-objects-in-usercontrol-from-mainwindow-in-wpf
-            */
-
-            /*Object obj = Grid11.FindName("Grid11Rect11");
-            System.Windows.Shapes.Rectangle r = (Rectangle)obj;
-            */
-
-            /*
-            Grid g = (Grid)MainGrid.FindName("Grid11");
-            Rectangle r = (Rectangle)g.FindName("Grid" + x.ToString() + y.ToString() + "Rect" + x.ToString() + y.ToString());
-            r.Fill = new SolidColorBrush(Colors.Black);
-            */
-            #endregion
-
-        }   
-        
-        private void click(object sender, MouseButtonEventArgs e)
-        {
-            Rectangle r = (Rectangle)sender;
-            Point clickedGrid = parseGrid(r);
-            if (clickedGrid == g.Board.ActiveBoard)
-            {
-                Point p = parseRect(r);                
-                if (g.Board.clickHandle(p))
-                {
-                    updateActiveBorder(p, clickedGrid);
-                    drawBoard();
-                    g.Board.checkIfWin(clickedGrid);
-                }                            
-            }            
-        }
-
+        /// <summary>
+        /// Parses the name of the rectangle and returns a point containing the position of the rectangle.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
         private Point parseRect(Rectangle r)
         {            
             Point ret = new Point();            
@@ -81,6 +44,11 @@ namespace UltimateTicTacToe
             return ret;
         }
 
+        /// <summary>
+        /// Parses the name of the grid and returns a point containing the position of the grid.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <returns></returns>
         private Point parseGrid(Rectangle r)
         {
             Point ret = new Point();
@@ -92,7 +60,7 @@ namespace UltimateTicTacToe
         private void colorRect(Rectangle r)
         {
             Color c = new Color();
-            if(g.Board.isTurnCross())
+            if(g.getActiveMark() == "cross")
             {
                 c = Colors.Black;
             }
@@ -102,38 +70,117 @@ namespace UltimateTicTacToe
             }
             r.Fill = new SolidColorBrush(c);
         }
-
+        
         private void drawBoard()
         {
-            for (int mbX = 1; mbX <= g.Board.BoardSize; mbX++)
+            for (int mbX = 0; mbX < g.getBoardSize(); mbX++)
             {
-                for (int mbY = 1; mbY <= g.Board.BoardSize; mbY++)
+                for (int mbY = 0; mbY < g.getBoardSize(); mbY++)
                 {
-                    for (int sbX = 1; sbX <= g.Board.BoardSize; sbX++)
+                    for (int sbX = 0; sbX < g.getBoardSize(); sbX++)
                     {
-                        for (int sbY = 1; sbY <= g.Board.BoardSize; sbY++)
+                        for (int sbY = 0; sbY < g.getBoardSize(); sbY++)
                         {
                             Rectangle r = (Rectangle)MainGrid.FindName("Grid" + mbX + mbY + "Rect" + sbX + sbY);
-                            Color c = Colors.LightGray;
-                            if(g.Board.isCircle(new Point(sbX, sbY), new Point(mbX, mbY))){
-                                c = Colors.Red;
+                            string shape = g.getShape(new Point(sbX, sbY), new Point(mbX, mbY));
+                            if(new Point(mbX,mbY) == g.getActiveBoard())
+                            {
+                                fillRect(r, shape, Colors.PaleTurquoise);
+
                             }
-                            else if(g.Board.isCross(new Point(sbX, sbY), new Point(mbX, mbY))){
-                                c = Colors.Black;
+                            else
+                            {
+                                fillRect(r, shape, Colors.LightGray);
                             }
-                            r.Fill = new SolidColorBrush(c);
                         }
                     }
                 }
             }
+            updateActiveBorder(g.getActiveBoard());
         }
 
-        private void updateActiveBorder(Point newAB, Point oldAB)
-        {            
-            Border oldBorder = (Border)MainGrid.FindName("Grid" + oldAB.X + oldAB.Y + "Border");
-            Border newBorder = (Border)MainGrid.FindName("Grid" + newAB.X + newAB.Y + "Border");                     
-            oldBorder.Opacity = 0;
-            newBorder.Opacity = 100;
+        private void fillRect(Rectangle r, string shape, Color c)
+        {
+            
+            r.Fill = new SolidColorBrush(c);
+            Uri u = null;
+            shape = shape.ToLower();
+            if (shape == "circle")
+            {
+                u = new Uri("pack://application:,,,/Resources/circle.png");
+            }
+            else if (shape == "cross")
+            {
+                u = new Uri("pack://application:,,,/Resources/cross.png");
+
+            }
+            if (shape != "empty")
+            {
+                BitmapImage bmi = new BitmapImage(u);
+                r.Fill = new ImageBrush(bmi);
+            }
+        }
+
+        private void updateActiveBorder(Point ab)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    Border b = (Border)MainGrid.FindName("Grid" + x + y + "Border");
+                    b.Opacity = 0;
+                }
+            }         
+            Border newActiveBorder = (Border)MainGrid.FindName("Grid" + ab.X + ab.Y + "Border");
+            newActiveBorder.Opacity = 100;
+        }
+
+        private void newGameButtonClick(object sender, RoutedEventArgs e)
+        {
+            g.newGame();
+            drawBoard();
+        }
+
+        private void loadButtonClick(object sender, RoutedEventArgs e)
+        {
+            g.loadGame();
+            drawBoard();
+        }
+        private void saveButtonClick(object sender, RoutedEventArgs e)
+        {
+            g.saveGame();
+        }
+
+        private void click(object sender, MouseButtonEventArgs e)
+        {
+            Rectangle r = (Rectangle)sender;
+            Point clickedGrid = parseGrid(r);
+            Point p = parseRect(r);
+            if (g.clickHandle(p, clickedGrid))
+            {
+                drawBoard();
+                g.checkIfWin(clickedGrid);
+            }            
+        }
+
+        private void mouseEnter(object sender, MouseEventArgs e)
+        {
+            Rectangle r = (Rectangle)sender;
+            Point clickedGrid = parseGrid(r);
+            if(clickedGrid == g.getActiveBoard() && g.getShape(parseRect(r),clickedGrid)=="empty")
+            {
+                fillRect(r, g.getActiveMark(), Colors.PaleTurquoise);
+            }
+        }
+
+        private void mouseLeave(object sender, MouseEventArgs e)
+        {
+            Rectangle r = (Rectangle)sender;
+            Point clickedGrid = parseGrid(r);
+            if (clickedGrid == g.getActiveBoard() && g.getShape(parseRect(r), clickedGrid) == "empty")
+            {
+                fillRect(r, "empty", Colors.PaleTurquoise);
+            }
         }
     }
 }

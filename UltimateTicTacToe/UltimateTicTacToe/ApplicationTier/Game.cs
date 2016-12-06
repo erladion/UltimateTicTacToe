@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using UltimateTicTacToe.DataTier;
 
 namespace UltimateTicTacToe.ApplicationTier
 {
     class Game
     {
         private BoardLogic board = null;
+        private DataLogic data = null;        
         public Game()
         {
             initGame();
@@ -25,8 +27,9 @@ namespace UltimateTicTacToe.ApplicationTier
                     sba[x, y] = new SmallBoard(createEmptyBoard());                    
                 }
             }
-            Entity.EMainBoard board = new Entity.EMainBoard(sba, new Point(1,1), Mark.Cross);
+            Entity.EMainBoard board = new Entity.EMainBoard(sba, new Point(0,0), Mark.Cross);
             this.board = new BoardLogic(board);
+            this.data = new DataLogic();
         }
 
         public bool clickHandle(Point pt, Point clickedBoard)
@@ -41,24 +44,28 @@ namespace UltimateTicTacToe.ApplicationTier
 
         public void saveGame()
         {
-
+            data.saveGame(board.Board);
         }
 
         public void loadGame()
         {
-
+            board.Board = data.loadGame();
         }
 
         public void newGame()
         {
             board.resetBoard();
+
         }
 
-        public BoardLogic Board{
-            get
-            {
-                return this.board;
-            }
+        public int getBoardSize()
+        {
+            return board.BoardSize;
+        }
+
+        public string getActiveMark()
+        {
+            return board.ActiveMark.ToString();
         }
 
         private Mark[,] createEmptyBoard()
@@ -89,6 +96,11 @@ namespace UltimateTicTacToe.ApplicationTier
             {
                 return "empty";
             }
+        }
+
+        public Point getActiveBoard()
+        {
+            return board.ActiveBoard;
         }
     }
 }
